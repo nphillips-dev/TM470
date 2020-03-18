@@ -61,6 +61,11 @@ namespace TM470.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            [Required]
+            [StringLength(5, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 1)]
+            [Display(Name = "Book Version")]
+            public string BookVersion { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -75,7 +80,7 @@ namespace TM470.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new TM470User { UserName = Input.Email, Email = Input.Email };
+                var user = new TM470User { UserName = Input.Email, Email = Input.Email, bookVersion = Input.BookVersion};
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
