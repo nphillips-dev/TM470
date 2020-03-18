@@ -80,7 +80,7 @@ namespace TM470.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new TM470User { UserName = Input.Email, Email = Input.Email, bookVersion = Input.BookVersion};
+                var user = new TM470User { UserName = Input.Email, Email = Input.Email, bookVersion = Input.BookVersion, friendId = GenerateFriendId() };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
@@ -115,6 +115,14 @@ namespace TM470.Areas.Identity.Pages.Account
 
             // If we got this far, something failed, redisplay form
             return Page();
+        }
+
+
+        
+        private string GenerateFriendId()
+        {
+            Random random = new Random();
+            return new string(Enumerable.Repeat("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", 8).Select(s => s[random.Next(s.Length)]).ToArray());
         }
     }
 }
