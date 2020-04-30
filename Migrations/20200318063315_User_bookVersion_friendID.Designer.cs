@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TM470.Data;
 
 namespace TM470.Migrations
 {
     [DbContext(typeof(TM470Context))]
-    partial class TM470ContextModelSnapshot : ModelSnapshot
+    [Migration("20200318063315_User_bookVersion_friendID")]
+    partial class User_bookVersion_friendID
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
