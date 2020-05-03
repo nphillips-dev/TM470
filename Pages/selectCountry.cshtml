@@ -16,6 +16,10 @@
                 <form role="form" method="post">
                     <div class="dropdown">
                         <select class="form-control" name="category">
+                            @foreach (var country in Model.countries)
+                            {
+                                <option value=@country.Id>@country.Country</option>
+                            }
                         </select>
                     </div>
 

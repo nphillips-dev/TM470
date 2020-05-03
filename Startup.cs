@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using TM470.Areas.Identity.Data;
 using TM470.Data;
+using TM470.Data.Database_Context;
 
 namespace TM470
 {
@@ -29,6 +30,7 @@ namespace TM470
         {
             services.AddDbContext<TM470Context>(options =>
             options.UseMySql(Configuration.GetConnectionString("TM470ContextConnection")));
+            services.AddTransient<ICountriesRepository, CountriesRepository>();
 
             services.AddIdentity<TM470User, IdentityRole>()
             .AddEntityFrameworkStores<TM470Context>()
