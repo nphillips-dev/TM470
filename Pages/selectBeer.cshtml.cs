@@ -26,5 +26,10 @@ namespace TM470.Pages
             beersService service = new beersService(_beerRepository);
             beers = service.getBeersByCountryId(id);
         }
+
+        public void OnPost()
+        {
+            var userId = User.Identity.Name;
+        }
     }
 }
