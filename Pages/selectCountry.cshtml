@@ -1,0 +1,29 @@
+﻿@page
+@model selectCountryModel
+@{
+    ViewData["Title"] = "Add a beer";
+}
+
+    <div class="container">
+        <div class="row">
+            <h1>Cross a beer off your list</h1>
+        </div>
+        <div class="row">
+            <h2>Select the country your beer comes from:</h2>
+        </div>
+        <div class="row">
+            <div class="col">
+                <form role="form" method="post">
+                    <div class="dropdown">
+                        <select class="form-control" name="category">
+                        </select>
+                    </div>
+
+                    <br><br>
+
+                    <button type="submit" class="btn btn-dark">Next</button>
+                    <p><a href="Dashboard">Cancel </a></p>
+                </form>
+            </div>
+        </div>
+    </div>
