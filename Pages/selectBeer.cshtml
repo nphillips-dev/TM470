@@ -1,0 +1,35 @@
+﻿@page "{id:int}"
+@model selectBeerModel
+@{
+    ViewData["Title"] = "Select beer";
+}
+
+
+<div class="container">
+    <div class="row">
+        <h1>Cross a beer off your list</h1>
+    </div>
+    <div class="row">
+        <h2>Select the name of the beer you wish to add:</h2>
+    </div>
+    <div class="row">
+        <div class="col">
+            <form role="form" method="post">
+                <div class="dropdown">
+                    <select class="form-control" name="category" asp-for="beer.Id">
+                        <option disabled value="blank" selected>Select a beer</option>
+                        @foreach (var beer in Model.beers)
+                        {
+                            <option value=@beer.Id>@beer.name</option>
+                        }
+                    </select>
+                </div>
+
+                <br><br>
+
+                <button type="submit" class="btn btn-dark">Next</button>
+                <p><a href="Dashboard">Cancel </a></p>
+            </form>
+        </div>
+    </div>
+</div>

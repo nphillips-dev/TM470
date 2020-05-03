@@ -7,16 +7,17 @@ using TM470.Data.Models;
 
 namespace TM470.Services
 {
-    public class countriesService
+    public class countriesService :ICountriesRepository
     {
         private readonly ICountriesRepository _countriesRepository;
         public countriesService(ICountriesRepository countriesRepository)
         {
             _countriesRepository = countriesRepository;
         }
-        public List<countries> GetAllCountries()
+
+        public List<countries> getAllCountries()
         {
-           return _countriesRepository.getAllCountries();
+            return _countriesRepository.getAllCountries();
         }
     }
 }
