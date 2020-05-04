@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Dapper;
+using Microsoft.Extensions.Configuration;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -24,9 +25,15 @@ namespace TM470.Data.Database_Context
             }
         }
 
-        public void SaveBeerToUserCollectionById(int userId, int beerId)
+        public void SaveBeerToUserCollectionById(string userId, int beerId)
         {
-            throw new NotImplementedException();
+            using (IDbConnection con = Connection)
+            {
+                con.Open();
+                var query = @"INSERT INTO beer_collection(user_id, beer_id)
+                            VALUES(@userID, @beerId)";
+                con.Execute(query, new { userId, beerId });
+            }
         }
     }
 }

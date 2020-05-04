@@ -12,27 +12,31 @@ using TM470.Services;
 
 namespace TM470.Pages
 {
+    [BindProperties]
     public class selectBeerModel : PageModel
     {
         private readonly IBeerRepository _beerRepository;
+        private readonly IBeerCollectionRepository _beerCollectionRepository;
         public List<beers> beers { get; set; }
 
         public beers beer { get; set; }
 
-        public selectBeerModel (IBeerRepository beerRepository)
+        public selectBeerModel (IBeerRepository beerRepository, IBeerCollectionRepository beerCollectionRepository)
         {
             _beerRepository = beerRepository;
+            _beerCollectionRepository = beerCollectionRepository;
         }
         public void OnGet(int id)
         {
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             beersService service = new beersService(_beerRepository);
             beers = service.getBeersByCountryId(id);
         }
 
         public void OnPost()
         {
-            var userId = User.Identity.Name;
+            string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            _beerCollectionRepository.SaveBeerToUserCollectionById(userId, beer.Id);
+            
         }
     }
 }

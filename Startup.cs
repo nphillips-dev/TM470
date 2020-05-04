@@ -32,6 +32,7 @@ namespace TM470
             options.UseMySql(Configuration.GetConnectionString("TM470ContextConnection")));
             services.AddTransient<ICountriesRepository, CountriesRepository>();
             services.AddTransient<IBeerRepository, BeerRespository>();
+            services.AddTransient<IBeerCollectionRepository, BeerCollectionRepository>();
 
             services.AddIdentity<TM470User, IdentityRole>()
             .AddEntityFrameworkStores<TM470Context>()
