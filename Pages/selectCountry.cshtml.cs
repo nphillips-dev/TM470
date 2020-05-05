@@ -19,19 +19,30 @@ namespace TM470.Pages
         public List<countries> countries { get; set; }
         public countries Country { get; set; }
 
+        private countriesService service;
+
         public selectCountryModel(ICountriesRepository countriesRepository)
         {
             _countriesRepository = countriesRepository;
         }
         public void OnGet()
         {
-            countriesService service = new countriesService(_countriesRepository);
-            countries = service.getAllCountries();
+            countries = new countriesService(_countriesRepository).getAllCountries();
         }
 
         public IActionResult OnPost()
         {
-            return RedirectToPage("/selectBeer", new { countryId = Country.Id });
+            if (Country.Id > 0 )
+            {
+                return RedirectToPage("/selectBeer", new { countryId = Country.Id });
+            }
+            else
+            {
+                //ModelState.AddModelError("SelectError", "Select a country");
+                countries = new countriesService(_countriesRepository).getAllCountries();
+                return Page();
+            }
+            
         }
     }
 }
