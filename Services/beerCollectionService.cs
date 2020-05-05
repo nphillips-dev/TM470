@@ -13,9 +13,9 @@ namespace TM470.Services
         {
             _beerCollectionRepository = beerCollectionRepository;
         }
-        public void SaveBeerToUserCollectionById(string userId, int beerId)
+        public int SaveBeerToUserCollectionById(string userId, int beerId)
         {
-            _beerCollectionRepository.SaveBeerToUserCollectionById(userId, beerId);
+            return _beerCollectionRepository.SaveBeerToUserCollectionById(userId, beerId);
         }
     }
 }

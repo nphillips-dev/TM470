@@ -31,7 +31,7 @@ namespace TM470.Pages
 
         public IActionResult OnPost()
         {
-            return RedirectToPage("/selectBeer", new { id = Country.Id });
+            return RedirectToPage("/selectBeer", new { countryId = Country.Id });
         }
     }
 }
