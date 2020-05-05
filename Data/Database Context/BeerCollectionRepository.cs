@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using TM470.Data.Models;
 
 namespace TM470.Data.Database_Context
 {
@@ -23,6 +24,11 @@ namespace TM470.Data.Database_Context
             {
                 return new MySqlConnection(_config.GetConnectionString("TM470ContextConnection"));
             }
+        }
+
+        public List<beers> getUserCollection(string userId)
+        {
+            throw new NotImplementedException();
         }
 
         public int SaveBeerToUserCollectionById(string userId, int beerId)
