@@ -9,6 +9,6 @@ namespace TM470.Data.Database_Context
     public interface IBeerCollectionRepository
     {
         public int SaveBeerToUserCollectionById(string userId, int beerId);
-        List<beers> getUserCollection(string userId);
+        List<beersViewModel> getUserCollection(string userId);
     }
 }

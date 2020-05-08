@@ -26,9 +26,17 @@ namespace TM470.Data.Database_Context
             }
         }
 
-        public List<beers> getUserCollection(string userId)
+        public List<beersViewModel> getUserCollection(string userId)
         {
-            throw new NotImplementedException();
+            using (IDbConnection con = Connection)
+            {
+                List<beersViewModel> userCollection = new List<beersViewModel>();
+                con.Open();
+                var query = @"SELECT * FROM beersViewModel WHERE id IN (SELECT beer_id FROM beer_collection WHERE user_id = @userId);";
+                userCollection = con.Query<beersViewModel>(query, new { userId }).ToList();
+
+                return userCollection;
+            }
         }
 
         public int SaveBeerToUserCollectionById(string userId, int beerId)

@@ -16,11 +16,17 @@
                             <tr>
                                 <th>Beer</th>
                                 <th>Country</th>
-                                <th>Date</th>
                             </tr>
                         </thead>
                         <tbody>
-                                //foreach beer here
+                                @foreach (var beer in Model.beers)
+                                {
+                                    <tr>
+                                        <td>@beer.name</td>
+                                        <td>@beer.Country</td>
+                                    </tr>
+
+                                }
                         </tbody>
                     </table>
 
