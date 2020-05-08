@@ -39,6 +39,16 @@ namespace TM470.Data.Database_Context
             }
         }
 
+        public int getUserCollectionCount(string userId)
+        {
+            using (IDbConnection con = Connection)
+            {
+                con.Open();
+                var query = @"SELECT count(*) FROM beer_collection WHERE user_id = @userId;";
+                return con.ExecuteScalar<int>(query, new { userId });
+            }
+        }
+
         public int SaveBeerToUserCollectionById(string userId, int beerId)
         {
             using (IDbConnection con = Connection)
