@@ -35,3 +35,11 @@ CREATE TABLE `friend_ids` (
 
   PRIMARY KEY (`id`)
 );
+
+
+CREATE  OR REPLACE VIEW `beersViewModel` AS
+SELECT beers.id, beers.name, countries.country, beers.version  
+FROM beers
+INNER JOIN countries 
+ON beers.country_id = countries.id
+ORDER BY beers.id ASC;

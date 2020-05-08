@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using TM470.Data.Models;
 
 namespace TM470.Data.Database_Context
 {
@@ -22,6 +23,19 @@ namespace TM470.Data.Database_Context
             get
             {
                 return new MySqlConnection(_config.GetConnectionString("TM470ContextConnection"));
+            }
+        }
+
+        public List<beersViewModel> getUserCollection(string userId)
+        {
+            using (IDbConnection con = Connection)
+            {
+                List<beersViewModel> userCollection = new List<beersViewModel>();
+                con.Open();
+                var query = @"SELECT * FROM beersViewModel WHERE id IN (SELECT beer_id FROM beer_collection WHERE user_id = @userId);";
+                userCollection = con.Query<beersViewModel>(query, new { userId }).ToList();
+
+                return userCollection;
             }
         }
 
