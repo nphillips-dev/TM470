@@ -28,10 +28,18 @@ namespace TM470.Pages
         }
         public void OnGet()
         {
-            //https://stackoverflow.com/questions/2745544/remove-items-from-one-list-in-another
             setPageVariables();
             service = new beerCollectionService(_beerCollectionRepository);
-            beers = service.getUserCollection(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            if (type.Equals("tried"))
+            {
+                beers = service.getUserCollection(userId);
+            }
+            else
+            {
+                beers = service.getUserCollectionRemaining(userId);
+            }
+            
         }
 
 
@@ -41,10 +49,10 @@ namespace TM470.Pages
             type = Request.Query["type"];
             if (string.IsNullOrEmpty(type))
             {
-                type = "list";
+                type = "tried";
             }
 
-            title = type.Equals("list") ? "List of beers you have tried" : "List of beers you have left to try";
+            title = type.Equals("tried") ? "List of beers you have tried" : "List of beers you have left to try";
         }
     }
 }

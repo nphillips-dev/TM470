@@ -49,6 +49,29 @@ namespace TM470.Data.Database_Context
             }
         }
 
+        public List<beersViewModel> getUserCollectionRemaining(string userId)
+        {
+            using (IDbConnection con = Connection)
+            {
+                List<beersViewModel> userCollection = new List<beersViewModel>();
+                con.Open();
+                var query = @"SELECT * FROM beersViewModel WHERE id NOT IN (SELECT beer_id FROM beer_collection WHERE user_id = @userId);";
+                userCollection = con.Query<beersViewModel>(query, new { userId }).ToList();
+
+                return userCollection;
+            }
+        }
+
+        public int getUserCollectionRemaningCount(string userId)
+        {
+            using (IDbConnection con = Connection)
+            {
+                con.Open();
+                var query = @"SELECT count(*) FROM beersViewModel WHERE id NOT IN (SELECT beer_id FROM beer_collection WHERE user_id = @userId);";
+                return con.ExecuteScalar<int>(query, new { userId });
+            }
+        }
+
         public int SaveBeerToUserCollectionById(string userId, int beerId)
         {
             using (IDbConnection con = Connection)

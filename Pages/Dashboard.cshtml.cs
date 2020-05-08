@@ -18,6 +18,7 @@ namespace TM470.Pages
         private beerCollectionService service;
 
         public int userCollectionCount { get; set; }
+        public int userCollectionRemainingCount { get; set; }
 
         public DashboardModel(IBeerCollectionRepository beerCollectionRepository)
         {
@@ -26,7 +27,9 @@ namespace TM470.Pages
         public void OnGet()
         {
             service = new beerCollectionService(_beerCollectionRepository);
-            userCollectionCount = service.getUserCollectionCount(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            userCollectionCount = service.getUserCollectionCount(userId);
+            userCollectionRemainingCount = service.getUserCollectionRemaningCount(userId);
         }
     }
 }
