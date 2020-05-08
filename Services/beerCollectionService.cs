@@ -20,6 +20,11 @@ namespace TM470.Services
            return _beerCollectionRepository.getUserCollection(userId);
         }
 
+        public int getUserCollectionCount(string userId)
+        {
+            return _beerCollectionRepository.getUserCollectionCount(userId);
+        }
+
         public int SaveBeerToUserCollectionById(string userId, int beerId)
         {
             return _beerCollectionRepository.SaveBeerToUserCollectionById(userId, beerId);

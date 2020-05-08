@@ -10,5 +10,6 @@ namespace TM470.Data.Database_Context
     {
         public int SaveBeerToUserCollectionById(string userId, int beerId);
         List<beersViewModel> getUserCollection(string userId);
+        public int getUserCollectionCount(string userId);
     }
 }
