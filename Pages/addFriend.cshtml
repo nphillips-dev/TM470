@@ -1,0 +1,16 @@
+﻿@page
+@model addFriendModel
+@{
+
+}
+          
+    <div class="container">
+        <h1>Add a Friend</h1>
+        <form role="form" method="post">
+            <div class="form-group">
+                <label for="friend">Friend's ID:</label>
+                <input type="text" class="form-control" asp-for="@Model.friendId" maxlength="8">
+            </div>
+            <button type="submit" class="btn btn-dark">Submit</button>
+        </form>
+    </div>   
