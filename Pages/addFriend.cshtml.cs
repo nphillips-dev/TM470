@@ -30,10 +30,28 @@ namespace TM470.Pages
 
         }
 
-        public void OnPost()
+        public IActionResult OnPost()
         {
-            service = new friendService(_friendRespository, _userRepository);
-            service.addFriend(User.FindFirst(ClaimTypes.NameIdentifier).Value, friendId);
+            if (!string.IsNullOrEmpty(friendId))
+            {
+                if (friendId.Length >= 8)
+                {
+                    service = new friendService(_friendRespository, _userRepository);
+                    service.addFriend(User.FindFirst(ClaimTypes.NameIdentifier).Value, friendId);
+                    return RedirectToPage("/Dashboard");
+                }
+                else
+                {
+                    ModelState.AddModelError("lengthError", "Check the Id entered is the correct length");
+                    return Page();
+                }                
+            }
+            else
+            {
+                ModelState.AddModelError("nullError", "Enter your friend's Id");
+                return Page();
+            }
+
         }
     }
 }
