@@ -33,6 +33,8 @@ namespace TM470
             services.AddTransient<ICountriesRepository, CountriesRepository>();
             services.AddTransient<IBeerRepository, BeerRespository>();
             services.AddTransient<IBeerCollectionRepository, BeerCollectionRepository>();
+            services.AddTransient<IFriendRespository, FriendRespository>();
+            services.AddTransient<IUserRepository, UserRepository>();
 
             services.AddIdentity<TM470User, IdentityRole>()
             .AddEntityFrameworkStores<TM470Context>()

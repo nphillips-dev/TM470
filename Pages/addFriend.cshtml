@@ -1,0 +1,20 @@
+﻿@page
+@model addFriendModel
+@{
+
+}
+          
+    <div class="container">
+        <h1>Add a Friend</h1>
+
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <form role="form" method="post">
+            <div class="form-group">
+                <label for="friend">Friend's ID:</label>
+                <br /><span class="text-muted">Friend Id is 8 digits in length and can be found on their dashboard</span>
+                <input type="text" class="form-control" asp-for="@Model.friendId" maxlength="8">
+            </div>
+            <button type="submit" class="btn btn-dark">Submit</button>
+        </form>
+    </div>   
