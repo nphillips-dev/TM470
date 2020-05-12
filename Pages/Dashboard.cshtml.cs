@@ -14,22 +14,32 @@ namespace TM470.Pages
     {
 
         private readonly IBeerCollectionRepository _beerCollectionRepository;
+        private readonly IFriendRespository _friendRespository;
+        private readonly IUserRepository _userRepository;
 
-        private beerCollectionService service;
+        private beerCollectionService _beerCollectionservice;
+        private friendService _friendService;
 
         public int userCollectionCount { get; set; }
         public int userCollectionRemainingCount { get; set; }
 
-        public DashboardModel(IBeerCollectionRepository beerCollectionRepository)
+        public string userFriendId { get; set; }
+
+        public DashboardModel(IBeerCollectionRepository beerCollectionRepository, IFriendRespository friendRespository, IUserRepository userRepository)
         {
             _beerCollectionRepository = beerCollectionRepository;
+            _friendRespository = friendRespository;
+            _userRepository = userRepository;
         }
         public void OnGet()
         {
-            service = new beerCollectionService(_beerCollectionRepository);
+            _beerCollectionservice = new beerCollectionService(_beerCollectionRepository);
+            _friendService = new friendService(_friendRespository, _userRepository);
+
             var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            userCollectionCount = service.getUserCollectionCount(userId);
-            userCollectionRemainingCount = service.getUserCollectionRemaningCount(userId);
+            userCollectionCount = _beerCollectionservice.getUserCollectionCount(userId);
+            userCollectionRemainingCount = _beerCollectionservice.getUserCollectionRemaningCount(userId);
+            userFriendId = _friendService.getUserFriendId(userId);
         }
     }
 }
