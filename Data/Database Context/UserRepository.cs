@@ -25,6 +25,17 @@ namespace TM470.Data.Database_Context
             }
         }
 
+        public string getUserFriendId(string userId)
+        {
+            using (IDbConnection con = Connection)
+            {
+                con.Open();
+                var query = "select friendId from aspnetusers where Id = @userId";
+                var result = con.QueryFirstOrDefault<string>(query, new { userId });
+                return result;
+            }
+        }
+
         public string getUserIdByFriendId(string friendId)
         {
             using (IDbConnection con = Connection)

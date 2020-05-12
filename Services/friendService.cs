@@ -23,6 +23,11 @@ namespace TM470.Services
             return _friendRespository.addFriend(userId, userIdOfFriend);
         }
 
+        public string getUserFriendId(string userId)
+        {
+            return _userRepository.getUserFriendId(userId);
+        }
+
         public string getUserIdByFriendId(string friendId)
         {
             return _userRepository.getUserIdByFriendId(friendId);
