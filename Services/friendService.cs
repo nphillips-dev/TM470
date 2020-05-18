@@ -32,5 +32,11 @@ namespace TM470.Services
         {
             return _userRepository.getUserIdByFriendId(friendId);
         }
+
+        public int removeFriend(string userId, string friendId)
+        {
+            string userIdOfFriend = getUserIdByFriendId(friendId);
+            return _friendRespository.removeFriend(userId, userIdOfFriend);
+        }
     }
 }

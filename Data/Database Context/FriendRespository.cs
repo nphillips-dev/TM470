@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using TM470.Data.Models;
 
 namespace TM470.Data.Database_Context
 {
@@ -37,6 +38,18 @@ namespace TM470.Data.Database_Context
 
                 return rowId;
             }
+        }
+        public int removeFriend(string userId, string friendID)
+        {
+            using (IDbConnection con = Connection)
+            {
+                int rowId = 0;
+                con.Open();
+                var query = @"DELETE from friend_ids where user_id = @userId AND friend_id = @friendId;";
+                rowId = con.ExecuteScalar<int>(query, new { userId, friendID });
+                return rowId;
+            }
+
         }
     }
 }
