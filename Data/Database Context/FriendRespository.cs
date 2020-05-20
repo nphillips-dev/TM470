@@ -32,7 +32,7 @@ namespace TM470.Data.Database_Context
             {
                 int rowId = 0;
                 con.Open();
-                var query = @"INSERT INTO friend_ids(user_id, friend_id)
+                var query = @"INSERT INTO friends(user_id, friend_id)
                             VALUES(@userID, @friendId); " + "select LAST_INSERT_ID();";
                 rowId = con.Execute(query, new { userId, friendID });
 
@@ -45,7 +45,7 @@ namespace TM470.Data.Database_Context
             {
                 int rowId = 0;
                 con.Open();
-                var query = @"DELETE from friend_ids where user_id = @userId AND friend_id = @friendId;";
+                var query = @"DELETE from friends where user_id = @userId AND friend_id = @friendId;";
                 rowId = con.ExecuteScalar<int>(query, new { userId, friendID });
                 return rowId;
             }
