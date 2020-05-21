@@ -24,6 +24,11 @@ namespace TM470.Services
             return _friendRespository.addFriend(userId, friend);
         }
 
+        public List<friends> GetFriends(string userId)
+        {
+            return _friendRespository.GetFriends(userId);
+        }
+
         public string getUserFriendId(string userId)
         {
             return _userRepository.getUserFriendId(userId);

@@ -51,5 +51,19 @@ namespace TM470.Data.Database_Context
             }
 
         }
+
+        public List<friends> GetFriends(string userId)
+        {
+            using (IDbConnection con = Connection)
+            {
+                List<friends> friendList = new List<friends>();
+                con.Open();
+                var query = @"SELECT * FROM friends WHERE user_id = @userId;";
+                friendList = con.Query<friends>(query, new { userId }).ToList();
+
+                return friendList;
+            }
+        }
+
     }
 }

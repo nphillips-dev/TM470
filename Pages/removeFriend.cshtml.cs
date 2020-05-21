@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using TM470.Data.Database_Context;
+using TM470.Data.Models;
 using TM470.Services;
 
 namespace TM470.Pages
 {
+    [BindProperties]
     public class removeFriendModel : PageModel
     {
         private readonly IFriendRespository _friendRespository;
@@ -17,8 +19,11 @@ namespace TM470.Pages
 
         private friendService service;
 
-        [BindProperty]
+        private string currentUser;
+
         public string friendId { get; set; }
+
+        public List<friends> friendList { get; set; }
 
         public removeFriendModel(IFriendRespository friendRespository, IUserRepository userRepository)
         {
@@ -27,7 +32,8 @@ namespace TM470.Pages
         }
         public void OnGet()
         {
-
+            currentUser = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            friendList = _friendRespository.GetFriends(currentUser);
         }
 
         public IActionResult OnPost()
@@ -37,7 +43,7 @@ namespace TM470.Pages
                 if (friendId.Length >= 8)
                 {
                     service = new friendService(_friendRespository, _userRepository);
-                    var result = service.removeFriend(User.FindFirst(ClaimTypes.NameIdentifier).Value, friendId);
+                    var result = service.removeFriend(currentUser, friendId);
                     return RedirectToPage("/Dashboard");
                 }
                 else
