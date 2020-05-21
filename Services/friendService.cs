@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TM470.Data.Database_Context;
+using TM470.Data.Models;
 
 namespace TM470.Services
 {
@@ -17,10 +18,10 @@ namespace TM470.Services
             _userRepository = userRepository;
         }
 
-        public int addFriend(string userId, string friendId)
+        public int addFriend(string userId, friends friend)
         {
-            string userIdOfFriend = getUserIdByFriendId(friendId);
-            return _friendRespository.addFriend(userId, userIdOfFriend);
+            friend.user_id = getUserIdByFriendId(friend.friend_id);
+            return _friendRespository.addFriend(userId, friend);
         }
 
         public string getUserFriendId(string userId)

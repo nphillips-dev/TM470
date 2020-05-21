@@ -26,15 +26,15 @@ namespace TM470.Data.Database_Context
             }
 
         }
-        public int addFriend(string userId, string friendID)
+        public int addFriend(string userId, friends friend)
         {
             using (IDbConnection con = Connection)
             {
                 int rowId = 0;
                 con.Open();
-                var query = @"INSERT INTO friends(user_id, friend_id)
-                            VALUES(@userID, @friendId); " + "select LAST_INSERT_ID();";
-                rowId = con.Execute(query, new { userId, friendID });
+                var query = @"INSERT INTO friends(user_id, friend_id, nickname)
+                            VALUES(@userId, @user_id, @nickname); " + "select LAST_INSERT_ID();";
+                rowId = con.Execute(query, new { userId, friend.user_id, friend.nickname });
 
                 return rowId;
             }
