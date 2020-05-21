@@ -26,15 +26,15 @@ namespace TM470.Data.Database_Context
             }
 
         }
-        public int addFriend(string userId, string friendID)
+        public int addFriend(string userId, friends friend)
         {
             using (IDbConnection con = Connection)
             {
                 int rowId = 0;
                 con.Open();
-                var query = @"INSERT INTO friend_ids(user_id, friend_id)
-                            VALUES(@userID, @friendId); " + "select LAST_INSERT_ID();";
-                rowId = con.Execute(query, new { userId, friendID });
+                var query = @"INSERT INTO friends(user_id, friend_id, nickname)
+                            VALUES(@userId, @user_id, @nickname); " + "select LAST_INSERT_ID();";
+                rowId = con.Execute(query, new { userId, friend.user_id, friend.nickname });
 
                 return rowId;
             }
@@ -45,11 +45,25 @@ namespace TM470.Data.Database_Context
             {
                 int rowId = 0;
                 con.Open();
-                var query = @"DELETE from friend_ids where user_id = @userId AND friend_id = @friendId;";
+                var query = @"DELETE from friends where user_id = @userId AND friend_id = @friendId;";
                 rowId = con.ExecuteScalar<int>(query, new { userId, friendID });
                 return rowId;
             }
 
         }
+
+        public List<friends> GetFriends(string userId)
+        {
+            using (IDbConnection con = Connection)
+            {
+                List<friends> friendList = new List<friends>();
+                con.Open();
+                var query = @"SELECT * FROM friends WHERE user_id = @userId;";
+                friendList = con.Query<friends>(query, new { userId }).ToList();
+
+                return friendList;
+            }
+        }
+
     }
 }

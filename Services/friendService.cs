@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TM470.Data.Database_Context;
+using TM470.Data.Models;
 
 namespace TM470.Services
 {
@@ -17,10 +18,15 @@ namespace TM470.Services
             _userRepository = userRepository;
         }
 
-        public int addFriend(string userId, string friendId)
+        public int addFriend(string userId, friends friend)
         {
-            string userIdOfFriend = getUserIdByFriendId(friendId);
-            return _friendRespository.addFriend(userId, userIdOfFriend);
+            friend.user_id = getUserIdByFriendId(friend.friend_id);
+            return _friendRespository.addFriend(userId, friend);
+        }
+
+        public List<friends> GetFriends(string userId)
+        {
+            return _friendRespository.GetFriends(userId);
         }
 
         public string getUserFriendId(string userId)
@@ -33,10 +39,9 @@ namespace TM470.Services
             return _userRepository.getUserIdByFriendId(friendId);
         }
 
-        public int removeFriend(string userId, string friendId)
+        public int removeFriend(string userId, string friendUserId)
         {
-            string userIdOfFriend = getUserIdByFriendId(friendId);
-            return _friendRespository.removeFriend(userId, userIdOfFriend);
+            return _friendRespository.removeFriend(userId, friendUserId);
         }
     }
 }

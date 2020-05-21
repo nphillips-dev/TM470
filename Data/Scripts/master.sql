@@ -28,10 +28,11 @@ CREATE TABLE `countries` (
   PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `friend_ids` (
+CREATE TABLE `friends` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `user_id` varchar(255) NOT NULL,
   `friend_id` varchar(255) NOT NULL,
+  `nickname` varchar(255) NOT NULL,
 
   PRIMARY KEY (`id`)
 );

@@ -8,7 +8,8 @@ namespace TM470.Data.Database_Context
 {
     public interface IFriendRespository
     {
-        public int addFriend(string userId, string friendID);
+        public List<friends> GetFriends(string userId);
+        public int addFriend(string userId, friends friend);
 
         public int removeFriend(string userId, string friendID);
     }
