@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using TM470.Data.Database_Context;
 using TM470.Data.Models;
 using TM470.Services;
@@ -38,26 +39,20 @@ namespace TM470.Pages
 
         public IActionResult OnPost()
         {
-            if (!string.IsNullOrEmpty(friendId))
+            currentUser = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            if (ModelState.IsValid)
             {
-                if (friendId.Length >= 8)
-                {
-                    service = new friendService(_friendRespository, _userRepository);
-                    var result = service.removeFriend(currentUser, friendId);
-                    return RedirectToPage("/Dashboard");
-                }
-                else
-                {
-                    ModelState.AddModelError("lengthError", "Check the Id entered is the correct length");
-                    return Page();
-                }
+                service = new friendService(_friendRespository, _userRepository);
+                var result = service.removeFriend(currentUser, friendId);
+                return RedirectToPage("/removeFriend");
             }
             else
             {
-                ModelState.AddModelError("nullError", "Enter your friend's Id");
+                currentUser = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                friendList = _friendRespository.GetFriends(currentUser);
                 return Page();
             }
-
         }
     }
 }
