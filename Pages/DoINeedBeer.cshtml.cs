@@ -11,6 +11,7 @@ using TM470.Services;
 
 namespace TM470.Pages
 {
+    [BindProperties]
     public class DoINeedBeerModel : PageModel
     {
         private readonly IBeerRepository _beerRepository;

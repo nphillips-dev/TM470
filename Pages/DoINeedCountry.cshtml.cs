@@ -10,6 +10,7 @@ using TM470.Services;
 
 namespace TM470.Pages
 {
+    [BindProperties]
     public class DoINeedCountryModel : PageModel
     {
         private readonly ICountriesRepository _countriesRepository;
