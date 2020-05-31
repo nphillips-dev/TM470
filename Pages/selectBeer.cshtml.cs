@@ -43,6 +43,7 @@ namespace TM470.Pages
         public IActionResult OnPost()
         {
             string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var user = User.FindFirst(ClaimTypes.NameIdentifier);
 
             if (selectedBeerId > 0)
             {

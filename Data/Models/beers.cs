@@ -14,16 +14,6 @@ namespace TM470.Data.Models
 
         [Display(Name = "Unique beer Id")]
         public string unique_beer_id { get; set; }
-        /*
-
-        [Required]
-        [Display(Name = "Country Id")]
-        public int country_id { get; set; }
-
-        [Required]
-        [StringLength(100, ErrorMessage = "Beer name must be 1 to 100 characters in length.")]
-        public string name { get; set; }
-        */
 
         [Required]
         public int version { get; set; }

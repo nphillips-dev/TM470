@@ -46,7 +46,7 @@ namespace TM470.Pages
 
                 if (savedRowId > 0)
                 {
-                    return RedirectToPage("/DoINeedResults");
+                    return RedirectToPage("/DoINeedResults", new { beerId = selectedBeerId });
                 }
                 else
                 {
