@@ -32,7 +32,7 @@ namespace TM470.Data.Database_Context
             {
                 List<beersViewModel> userCollection = new List<beersViewModel>();
                 con.Open();
-                var query = @"SELECT * FROM beersViewModel WHERE id IN (SELECT beer_id FROM beer_collection WHERE user_id = @userId);";
+                var query = @"SELECT * FROM beersViewModel WHERE beer_id IN (SELECT beer_id FROM beer_collection WHERE user_id = @userId);";
                 userCollection = con.Query<beersViewModel>(query, new { userId }).ToList();
 
                 return userCollection;
@@ -55,7 +55,7 @@ namespace TM470.Data.Database_Context
             {
                 List<beersViewModel> userCollection = new List<beersViewModel>();
                 con.Open();
-                var query = @"SELECT * FROM beersViewModel WHERE id NOT IN (SELECT beer_id FROM beer_collection WHERE user_id = @userId);";
+                var query = @"SELECT * FROM beersViewModel WHERE beer_id NOT IN (SELECT beer_id FROM beer_collection WHERE user_id = @userId);";
                 userCollection = con.Query<beersViewModel>(query, new { userId }).ToList();
 
                 return userCollection;
@@ -67,7 +67,7 @@ namespace TM470.Data.Database_Context
             using (IDbConnection con = Connection)
             {
                 con.Open();
-                var query = @"SELECT count(*) FROM beersViewModel WHERE id NOT IN (SELECT beer_id FROM beer_collection WHERE user_id = @userId);";
+                var query = @"SELECT count(*) FROM beersViewModel WHERE beer_id NOT IN (SELECT beer_id FROM beer_collection WHERE user_id = @userId);";
                 return con.ExecuteScalar<int>(query, new { userId });
             }
         }

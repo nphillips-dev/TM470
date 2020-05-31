@@ -42,17 +42,7 @@ namespace TM470.Pages
 
             if (selectedBeerId > 0)
             {
-                int savedRowId = _beerCollectionRepository.SaveBeerToUserCollectionById(userId, selectedBeerId);
-
-                if (savedRowId > 0)
-                {
-                    return RedirectToPage("/DoINeedResults", new { beerId = selectedBeerId });
-                }
-                else
-                {
-                    ModelState.AddModelError("SaveError", "An error prevented your request from saving, try again");
-                    return Page();
-                }
+                return RedirectToPage("/DoINeedResults", new { beerId = selectedBeerId });
             }
             else
             {

@@ -26,6 +26,16 @@ namespace TM470.Data.Database_Context
             }
         }
 
+        public beersViewModel getBeerById(int id)
+        {
+            using (IDbConnection con = Connection)
+            {
+                con.Open();
+                var query = "select * from beersViewModel where beer_id = @id";
+                return con.Query<beersViewModel>(query, new { id }).FirstOrDefault();
+            }
+        }
+
         public List<beersViewModel> getBeersByCountryId(int id)
         {
             List<beersViewModel> beers = new List<beersViewModel>();

@@ -8,7 +8,12 @@ namespace TM470.Data.Models
 {
     public class beersViewModel
     {
+
         [Display(Name = "Unique beer Id")]
+
+        public int unique_id { get; set; }
+
+        [Display(Name = "Version beer Id")]
         public int beer_id { get; set; }
 
         [Required]
