@@ -8,6 +8,6 @@ namespace TM470.Data.Database_Context
 {
     public interface IBeerRepository
     {
-        List<beers> getBeersByCountryId(int id);
+        List<beersViewModel> getBeersByCountryId(int id);
     }
 }

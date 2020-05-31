@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\Scripts\**" />
+    <Content Remove="Data\Scripts\**" />
+    <EmbeddedResource Remove="Data\Scripts\**" />
+    <None Remove="Data\Scripts\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Migrations\20200317062946_CreateIdentitySchema.cs" />
     <Compile Remove="Migrations\20200317062946_CreateIdentitySchema.Designer.cs" />
   </ItemGroup>

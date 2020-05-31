@@ -15,7 +15,7 @@ namespace TM470.Services
             _beerRepository = beerRepository;
         }
 
-        public List<beers> getBeersByCountryId(int id)
+        public List<beersViewModel> getBeersByCountryId(int id)
         {
             return _beerRepository.getBeersByCountryId(id);
         }

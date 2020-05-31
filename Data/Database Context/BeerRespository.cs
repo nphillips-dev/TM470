@@ -26,14 +26,14 @@ namespace TM470.Data.Database_Context
             }
         }
 
-        public List<beers> getBeersByCountryId(int id)
+        public List<beersViewModel> getBeersByCountryId(int id)
         {
-            List<beers> beers = new List<beers>();
+            List<beersViewModel> beers = new List<beersViewModel>();
             using (IDbConnection con = Connection)
             {
                 con.Open();
-                var query = "select * from beers where country_id = @id";
-                beers = con.Query<beers>(query, new {id}).ToList();
+                var query = "select * from beersViewModel where country_id = @id";
+                beers = con.Query<beersViewModel>(query, new {id}).ToList();
 
                 return beers;
             }

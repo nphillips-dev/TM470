@@ -46,7 +46,7 @@ CREATE TABLE `friends` (
 
 
 CREATE  OR REPLACE VIEW `beersViewModel` AS
-SELECT unique_beers.id, versioned_beers.id as 'beer_id', unique_beers.name, countries.country, versioned_beers.version  
+SELECT unique_beers.id, versioned_beers.id as 'beer_id', unique_beers.name, countries.id as 'country_id', countries.country, versioned_beers.version  
 FROM unique_beers
 INNER JOIN countries
 ON unique_beers.country_id = countries.id

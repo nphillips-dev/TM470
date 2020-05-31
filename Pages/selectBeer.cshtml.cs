@@ -22,7 +22,7 @@ namespace TM470.Pages
         private readonly IBeerCollectionRepository _beerCollectionRepository;
 
         public int CountryId { get; set; }
-        public List<beers> beers { get; set; }
+        public List<beersViewModel> beers { get; set; }
 
         public int selectedBeerId { get; set; }
 
