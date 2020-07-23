@@ -11,9 +11,8 @@ using TM470.Services;
 namespace TM470.Pages
 {
     [BindProperties]
-    public class selectCountryModel : PageModel
+    public class DoINeedCountryModel : PageModel
     {
-
         private readonly ICountriesRepository _countriesRepository;
 
         public List<countries> countries { get; set; }
@@ -21,7 +20,7 @@ namespace TM470.Pages
 
         private countriesService service;
 
-        public selectCountryModel(ICountriesRepository countriesRepository)
+        public DoINeedCountryModel(ICountriesRepository countriesRepository)
         {
             _countriesRepository = countriesRepository;
         }
@@ -32,16 +31,16 @@ namespace TM470.Pages
 
         public IActionResult OnPost()
         {
-            if (Country.Id > 0 )
+            if (Country.Id > 0)
             {
-                return RedirectToPage("/selectBeer", new { countryId = Country.Id });
+                return RedirectToPage("/DoINeedBeer", new { countryId = Country.Id });
             }
             else
             {
                 countries = new countriesService(_countriesRepository).getAllCountries();
                 return Page();
             }
-            
+
         }
     }
 }

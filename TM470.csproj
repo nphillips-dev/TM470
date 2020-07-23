@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\Scripts\**" />
+    <Content Remove="Data\Scripts\**" />
+    <EmbeddedResource Remove="Data\Scripts\**" />
+    <None Remove="Data\Scripts\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Migrations\20200317062946_CreateIdentitySchema.cs" />
     <Compile Remove="Migrations\20200317062946_CreateIdentitySchema.Designer.cs" />
   </ItemGroup>
@@ -20,7 +27,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.2" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.3" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.1.1" />
   </ItemGroup>
 

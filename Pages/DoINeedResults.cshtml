@@ -1,0 +1,44 @@
+﻿@page "{beerId:int}"
+@model DoINeedResultsModel
+@{
+}
+
+
+<div class="container">
+    <div class="row">
+        <h1>Who needs @Model.selectedBeer.name ?</h1>
+    </div>
+
+    <br />
+    @if (!Model.haveIHadTheBeer)
+    {
+        <div class="row">
+            <h2>You do!!!</h2>
+        </div>
+        <br />
+    }
+    <div class="row">
+        <div class="col">
+            <div class="row">
+                <table class="table table-dark table-striped">
+                    <thead>
+                        <tr>
+                            <th>Friend</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var friend in Model.Results)
+                        {
+                            <tr>
+                                <td>@friend.nickname</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+

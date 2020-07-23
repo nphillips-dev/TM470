@@ -3,12 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using TM470.Data.Database_Context;
 using TM470.Data.Models;
 using TM470.Services;
@@ -16,7 +12,7 @@ using TM470.Services;
 namespace TM470.Pages
 {
     [BindProperties]
-    public class selectBeerModel : PageModel
+    public class DoINeedBeerModel : PageModel
     {
         private readonly IBeerRepository _beerRepository;
         private readonly IBeerCollectionRepository _beerCollectionRepository;
@@ -28,7 +24,7 @@ namespace TM470.Pages
 
         private beersService service;
 
-        public selectBeerModel (IBeerRepository beerRepository, IBeerCollectionRepository beerCollectionRepository)
+        public DoINeedBeerModel(IBeerRepository beerRepository, IBeerCollectionRepository beerCollectionRepository)
         {
             _beerRepository = beerRepository;
             _beerCollectionRepository = beerCollectionRepository;
@@ -43,21 +39,10 @@ namespace TM470.Pages
         public IActionResult OnPost()
         {
             string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var user = User.FindFirst(ClaimTypes.NameIdentifier);
 
             if (selectedBeerId > 0)
             {
-                int savedRowId = _beerCollectionRepository.SaveBeerToUserCollectionById(userId, selectedBeerId);
-
-                if (savedRowId > 0)
-                {
-                    return RedirectToPage("/Dashboard");
-                }
-                else
-                {
-                    ModelState.AddModelError("SaveError", "An error prevented your request from saving, try again");
-                    return Page();
-                }
+                return RedirectToPage("/DoINeedResults", new { beerId = selectedBeerId });
             }
             else
             {
