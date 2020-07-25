@@ -44,6 +44,9 @@ namespace TM470.Areas.Identity.Pages.Account
 
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
+        [BindProperty]
+        public List<string> VersionList { get; set; }
+
         public class InputModel
         {
             [Required]
@@ -72,10 +75,21 @@ namespace TM470.Areas.Identity.Pages.Account
         {
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            VersionList = new List<string>()
+                {
+                    "2013"
+                };
         }
+
+        
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
+            VersionList = new List<string>()
+                {
+                    "2013"
+                };
+
             returnUrl = returnUrl ?? Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
