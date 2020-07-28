@@ -6,21 +6,26 @@
 
     <div class="container">
         <div class="row">
-            <h1>Main Features</h1>
+            <h1>Dashboard</h1>
+        </div>
+        <br />
+
+        <div class="row">
+            <h2>Main Features</h2>
         </div>
         <div class="row">
             <div class="col">
                 <a asp-page="selectCountry" class="btn btn-dark">Add Beer</a>
             </div>
-         
+
             <div class="col">
                 <a asp-page="DoINeedCountry" class="btn btn-dark">Who needs a beer?</a>
             </div>
-        </div>  
+        </div>
 
         <hr>
         <div class="row">
-            <h1>My Lists</h1>
+            <h2>My Lists</h2>
         </div>
         <div class="row">
             <div class="col">
@@ -28,25 +33,25 @@
             </div>
             <div class="col">
                 <a class="btn btn-dark" asp-page="userLists" asp-route-type="notTried">Beers Remaining <span class="badge badge-light">@Model.userCollectionRemainingCount</span></a>
-            </div>      
-         </div>
-
-    <hr>
-
-    <div class="row">
-        <h1>My Friends</h1>
-    </div>
-    <div class="row">
-        <h2>Your friend Id is @Model.userFriendId</h2>
-    </div>
-    <div class="row">
-        <div class="col">
-            <a class="btn btn-dark" asp-page="addFriend">Add Friend</a>
+            </div>
         </div>
-        <div class="col">
-            <a class="btn btn-dark" asp-page="removeFriend">Remove Friend</a>
+
+        <hr>
+
+        <div class="row">
+            <h2>My Friends</h2>
         </div>
-    </div>
-        
+        <div class="row">
+            <h3>Your friend Id is @Model.userFriendId</h3>
+        </div>
+        <div class="row">
+            <div class="col">
+                <a class="btn btn-dark" asp-page="addFriend">Add Friend</a>
+            </div>
+            <div class="col">
+                <a class="btn btn-dark" asp-page="removeFriend">Remove Friend</a>
+            </div>
+        </div>
+
     </div>
 

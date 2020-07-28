@@ -60,7 +60,7 @@ body {
     line-height: 1.5;
     color: #212529;
     text-align: left;
-    background-color: #f49e42;
+    background-color: #F8B772;
 }
 
 [tabindex="-1"]:focus {
@@ -153,9 +153,9 @@ sup {
 }
 
 a {
-  color: #007bff;
-  text-decoration: none;
-  background-color: transparent;
+    color: #0000AD;
+    text-decoration: none;
+    background-color: transparent;
 }
 
 a:hover {
@@ -9914,6 +9914,10 @@ a.text-dark:hover, a.text-dark:focus {
 
 .text-body {
   color: #212529 !important;
+}
+
+.text-footer {
+    color: #000 !important;
 }
 
 .text-muted {
