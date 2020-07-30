@@ -1,12 +1,9 @@
 ﻿using Dapper;
 using Microsoft.Extensions.Configuration;
-using MySql.Data;
 using MySql.Data.MySqlClient;
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Threading.Tasks;
 using TM470.Data.Models;
 
 namespace TM470.Data.Database_Context
