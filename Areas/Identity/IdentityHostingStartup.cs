@@ -1,11 +1,7 @@
-﻿using System;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using TM470.Areas.Identity.Data;
 using TM470.Data;
 
 [assembly: HostingStartup(typeof(TM470.Areas.Identity.IdentityHostingStartup))]
