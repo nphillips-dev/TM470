@@ -10,6 +10,11 @@
 {
     <h4>Registered Logins</h4>
     <table class="table">
+        <caption>External logins</caption>
+        <tr>
+            <th scope="col">Provider</th>
+            <th scope="col">Action</th>
+        </tr>
         <tbody>
             @foreach (var login in Model.CurrentLogins)
             {
