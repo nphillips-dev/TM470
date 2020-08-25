@@ -3,7 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TM470", "TM470.csproj", "{DE787992-79BE-4C52-8BA9-3CA04BAD8A29}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TM470", "TM470.csproj", "{DE787992-79BE-4C52-8BA9-3CA04BAD8A29}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TM470_Test", "..\TM470_Test\TM470_Test.csproj", "{90BBA054-D6E7-42BC-835E-9D416A7415BA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DE787992-79BE-4C52-8BA9-3CA04BAD8A29} = {DE787992-79BE-4C52-8BA9-3CA04BAD8A29}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +20,10 @@ Global
 		{DE787992-79BE-4C52-8BA9-3CA04BAD8A29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE787992-79BE-4C52-8BA9-3CA04BAD8A29}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE787992-79BE-4C52-8BA9-3CA04BAD8A29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90BBA054-D6E7-42BC-835E-9D416A7415BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90BBA054-D6E7-42BC-835E-9D416A7415BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90BBA054-D6E7-42BC-835E-9D416A7415BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90BBA054-D6E7-42BC-835E-9D416A7415BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
